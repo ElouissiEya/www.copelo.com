@@ -1,0 +1,84 @@
+<form [formGroup]="registerForm">
+  <label for="firstName">First Name</label>
+  <input
+    type="text"
+    id="firstName"
+    formControlName="firstName"
+    placeholder="Enter your first name"
+    [class.invalid]="firstName?.invalid && firstName?.touched"
+  />
+  <div *ngIf="firstName?.invalid && firstName?.touched" class="error-message">
+    <span *ngIf="firstName?.errors?.['required']">First Name is required</span>
+    <span *ngIf="firstName?.errors?.['minlength']">
+          First Name must be at least 2 characters
+        </span>
+  </div>
+
+  <label for="lastName">Last Name</label>
+  <input
+    type="text"
+    id="lastName"
+    formControlName="lastName"
+    placeholder="Enter your last name"
+    [class.invalid]="lastName?.invalid && lastName?.touched"
+  />
+  <div *ngIf="lastName?.invalid && lastName?.touched" class="error-message">
+    <span *ngIf="lastName?.errors?.['required']">Last Name is required</span>
+    <span *ngIf="lastName?.errors?.['minlength']">
+          Last Name must be at least 2 characters
+        </span>
+  </div>
+
+  <label for="email">Email Address</label>
+  <input
+    type="email"
+    id="email"
+    formControlName="email"
+    placeholder="Enter your email"
+    [class.invalid]="email?.invalid && email?.touched"
+  />
+  <div *ngIf="email?.invalid && email?.touched" class="error-message">
+    <span *ngIf="email?.errors?.['required']">Email is required</span>
+    <span *ngIf="email?.errors?.['email']">Please enter a valid email</span>
+  </div>
+
+  <label for="password">Password</label>
+  <input
+    type="password"
+    id="password"
+    formControlName="password"
+    placeholder="Create a password"
+    [class.invalid]="password?.invalid && password?.touched"
+  />
+  <div *ngIf="password?.invalid && password?.touched" class="error-message">
+    <span *ngIf="password?.errors?.['required']">Password is required</span>
+    <span *ngIf="password?.errors?.['minlength']">
+          Password must be at least 6 characters
+        </span>
+  </div>
+
+  <label for="phoneNumber">Phone Number</label>
+  <input
+    type="text"
+    id="phoneNumber"
+    formControlName="phoneNumber"
+    placeholder="Enter your phone number"
+    [class.invalid]="phoneNumber?.invalid && phoneNumber?.touched"
+  />
+  <div *ngIf="phoneNumber?.invalid && phoneNumber?.touched" class="error-message">
+    <span *ngIf="phoneNumber?.errors?.['required']">Phone number is required</span>
+    <span *ngIf="phoneNumber?.errors?.['pattern']">
+          Please enter a valid phone number
+        </span>
+  </div>
+
+
+  <div *ngIf="errorMessage" class="error-message server-error">
+    {{ errorMessage }}
+  </div>
+
+  <button type="submit" [disabled]="registerForm.invalid || isLoading">
+    <span *ngIf="!isLoading">Sign Up</span>
+    <span *ngIf="isLoading">Creating account...</span>
+  </button>
+</form>
